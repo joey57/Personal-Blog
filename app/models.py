@@ -19,6 +19,7 @@ class User(UserMixin,db.Model):
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
     pass_secure = db.Column(db.String(255))
+    posts = db.relationship('Post', backref='user', passive_deletes=True)
     
     @property
     def password(self):
@@ -34,7 +35,14 @@ class User(UserMixin,db.Model):
 
     def __repr__(self):
         return f'User {self.username}'
-        
+
+class Post(db.Model):
+     __tablename__ = 'posts'
+
+     id = db.Column(db.Integer, primary_key=True)
+     text = db.Column(db.Text, nullable=False)
+     author = db.Column(db.Integer, db.ForeignKey('users.id',ondelete='CASCADE'), nullable=False)
+            
 
 
 

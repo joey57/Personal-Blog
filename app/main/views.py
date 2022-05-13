@@ -1,6 +1,6 @@
-from flask import render_template, request, redirect, url_for, abort
+from flask import render_template, request, redirect, url_for, abort,flash
 from . import main
-from ..models import User
+from ..models import User,Post
 from flask_login import login_required, current_user
 from datetime import datetime
 from .. import db
@@ -10,6 +10,18 @@ from .forms import UpdateProfile
 @login_required
 def home():
   return render_template("home.html" , user=current_user)
+
+@main.route('/create-post', methods=['GET', 'POST'])
+@login_required
+def create_post():
+    if request.method == 'POST':
+        text = request.form.get('text')
+        if not text:
+            flash('Post cannot be empty', category='error')
+        else:
+            flash('Post created!', category='success')
+
+    return render_template('create_post.html', user=current_user)  
 
 
 @main.route('/user/<uname>')
