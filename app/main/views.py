@@ -6,6 +6,12 @@ from datetime import datetime
 from .. import db
 from .forms import UpdateProfile
 
+@main.route('/home')
+@login_required
+def home():
+  return render_template("home.html" , user=current_user)
+
+
 @main.route('/user/<uname>')
 def profile(uname):
     user = User.query.filter_by(username = uname).first()
