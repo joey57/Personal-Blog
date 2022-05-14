@@ -13,15 +13,13 @@ class User(UserMixin,db.Model):
 
     id = db.Column(db.Integer,primary_key = True)
     username = db.Column(db.String(255),index = True)
-    firstname = db.Column(db.String(255))
-    lastname = db.Column(db.String(255))
     email = db.Column(db.String(255),unique = True,index = True)
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
     pass_secure = db.Column(db.String(255))
-    posts = db.relationship('Post', backref='user', passive_deletes=True)
-    comments = db.relationship('Comment', backref ='user', passive_deletes=True)
-    likes = db.relationship('Like', backref ='user', passive_deletes=True)
+    # posts = db.relationship('Post', backref='user', passive_deletes=True)
+    # comments = db.relationship('Comment', backref ='user', passive_deletes=True)
+    # likes = db.relationship('Like', backref ='user', passive_deletes=True)
     
     @property
     def password(self):
@@ -38,29 +36,29 @@ class User(UserMixin,db.Model):
     def __repr__(self):
         return f'User {self.username}'
 
-class Post(db.Model):
-     __tablename__ = 'posts'
+# class Post(db.Model):
+#      __tablename__ = 'posts'
 
-     id = db.Column(db.Integer, primary_key=True)
-     text = db.Column(db.Text, nullable=False)
-     author = db.Column(db.Integer, db.ForeignKey('users.id',ondelete='CASCADE'), nullable=False)
-     comments = db.relationship('Comment', backref ='post', passive_deletes=True)
-     likes = db.relationship('Like', backref ='posts', passive_deletes=True)
+#      id = db.Column(db.Integer, primary_key=True)
+#      text = db.Column(db.Text, nullable=False)
+#      author = db.Column(db.Integer, db.ForeignKey('users.id',ondelete='CASCADE'), nullable=False)
+#      comments = db.relationship('Comment', backref ='post', passive_deletes=True)
+#      likes = db.relationship('Like', backref ='posts', passive_deletes=True)
 
-class Comment(db.Model):
-     __tablename__ = 'comments'
+# class Comment(db.Model):
+#      __tablename__ = 'comments'
 
-     id = db.Column(db.Integer, primary_key=True)
-     text = db.Column(db.String(200), nullable=False)
-     author = db.Column(db.Integer, db.ForeignKey('users.id',ondelete='CASCADE'), nullable=False)
-     post_id = db.Column(db.Integer, db.ForeignKey('posts.id',ondelete='CASCADE'), nullable=False)
+#      id = db.Column(db.Integer, primary_key=True)
+#      text = db.Column(db.String(200), nullable=False)
+#      author = db.Column(db.Integer, db.ForeignKey('users.id',ondelete='CASCADE'), nullable=False)
+#      post_id = db.Column(db.Integer, db.ForeignKey('posts.id',ondelete='CASCADE'), nullable=False)
 
-class Like(db.Model):
-     __tablename__ = 'likes'
+# class Like(db.Model):
+#      __tablename__ = 'likes'
 
-     id = db.Column(db.Integer, primary_key=True)
-     author = db.Column(db.Integer, db.ForeignKey('users.id',ondelete='CASCADE'), nullable=False)
-     post_id = db.Column(db.Integer, db.ForeignKey('posts.id',ondelete='CASCADE'), nullable=False)
+#      id = db.Column(db.Integer, primary_key=True)
+#      author = db.Column(db.Integer, db.ForeignKey('users.id',ondelete='CASCADE'), nullable=False)
+#      post_id = db.Column(db.Integer, db.ForeignKey('posts.id',ondelete='CASCADE'), nullable=False)
 
 
             
