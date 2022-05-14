@@ -1,5 +1,5 @@
 # Personal-Blog
-Blog web applicatio
+Blog web application
 
 ## Author name
 Joyce Njoroge 
