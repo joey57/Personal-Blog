@@ -2,7 +2,7 @@ from flask import render_template, request, redirect, url_for, abort,flash
 from requests import post
 from . import main
 from ..models import User,Post
-from flask_login import login_required, current_user
+from flask_login import login_fresh, login_required, current_user
 from datetime import datetime
 from .. import db
 from .forms import UpdateProfile
@@ -28,7 +28,33 @@ def create_post():
             flash('Post created!', category='success')
             return redirect(url_for('main.home'))
 
-    return render_template('create_post.html', user=current_user)  
+    return render_template('create_post.html', user=current_user) 
+
+@main.route('/delete-post/<int:id>', methods=['GET','POST'])
+@login_required
+def delete_post(id):
+    post = Post.query.filter_by(id=id).first()
+    if not post:
+        flash("Post does not exist.", category='error')
+    elif current_user.id != post.id:
+        flash("You do not have permission to delete this post.", category='error')
+    else:
+        db.session.delete(post)
+        db.session.commit()
+        flash('Post deleted', category='success')
+    return redirect(url_for('main.home')) 
+
+@main.route('/posts/<username>')
+@login_required
+def posts(username):
+    user = User.query.filter_by(username=username).first()
+
+    if not user:
+        flash('No user with that username exists.', category='error')
+        return redirect(url_for('main.home'))
+
+    posts = Post.query.filter_by(author=user.id).all()
+    return render_template('posts.html', user=current_user, posts=posts, username=username)
 
 
 @main.route('/user/<uname>')
