@@ -17,7 +17,7 @@ class User(UserMixin,db.Model):
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
     pass_secure = db.Column(db.String(255))
-    # posts = db.relationship('Post', backref='user', passive_deletes=True)
+    posts = db.relationship('Post', backref='user', passive_deletes=True)
     # comments = db.relationship('Comment', backref ='user', passive_deletes=True)
     # likes = db.relationship('Like', backref ='user', passive_deletes=True)
     
@@ -36,14 +36,14 @@ class User(UserMixin,db.Model):
     def __repr__(self):
         return f'User {self.username}'
 
-# class Post(db.Model):
-#      __tablename__ = 'posts'
+class Post(db.Model):
+     __tablename__ = 'posts'
 
-#      id = db.Column(db.Integer, primary_key=True)
-#      text = db.Column(db.Text, nullable=False)
-#      author = db.Column(db.Integer, db.ForeignKey('users.id',ondelete='CASCADE'), nullable=False)
-#      comments = db.relationship('Comment', backref ='post', passive_deletes=True)
-#      likes = db.relationship('Like', backref ='posts', passive_deletes=True)
+     id = db.Column(db.Integer, primary_key=True)
+     text = db.Column(db.Text, nullable=False)
+     author = db.Column(db.Integer, db.ForeignKey('users.id',ondelete='CASCADE'), nullable=False)
+    #  comments = db.relationship('Comment', backref ='post', passive_deletes=True)
+    #  likes = db.relationship('Like', backref ='posts', passive_deletes=True)
 
 # class Comment(db.Model):
 #      __tablename__ = 'comments'
