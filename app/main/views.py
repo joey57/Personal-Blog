@@ -1,6 +1,7 @@
+from operator import ge
 from turtle import pos
 from flask import render_template, request, redirect, url_for, abort,flash
-from requests import post
+from ..requests import get_blogQuotes
 from . import main
 from ..models import User,Post,Comment,Like
 from flask_login import login_fresh, login_required, current_user
@@ -9,6 +10,13 @@ from .. import db
 from .forms import UpdateProfile
 
 @main.route('/')
+def index():
+    '''
+    '''
+    blogQuote =get_blogQuotes()
+    title = 'Welcome to My Blog'
+    return render_template('index.html',title = title, blogQuote=blogQuote)
+ 
 @main.route('/home')
 @login_required
 def home():
