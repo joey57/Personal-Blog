@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for, abort,flash
 from ..requests import get_blogQuotes
 from . import main
-from ..models import User, Post
+from ..models import User, Post, Comment
 from flask_login import login_required, current_user
 from datetime import datetime
 from .. import db
@@ -64,36 +64,36 @@ def posts(username):
     posts = user.posts
     return render_template('posts.html', user=current_user, posts=posts, username=username)
 
-# @main.route('/create-comment/<post_id>',methods=['POST'])
-# @login_required
-# def create_comment(post_id):
-#     text = request.form.get('text')
+@main.route('/create-comment/<post_id>',methods=['POST'])
+@login_required
+def create_comment(post_id):
+    text = request.form.get('text')
 
-#     if not text:
-#         flash('Comment cannot be empty')
-#     else: 
-#         post = Post.query.filter_by(id=post_id)
-#         if post:
-#             comment = Comment(text=text, author=current_user.id, post_id=post_id)
-#             db.session.add(comment)
-#             db.session.commit()
-#         else:
-#             flash('post does not exist.', category='error')    
-#     return redirect(url_for('main.home'))  
+    if not text:
+        flash('Comment cannot be empty')
+    else: 
+        post = Post.query.filter_by(id=post_id)
+        if post:
+            comment = Comment(text=text, author=current_user.id, post_id=post_id)
+            db.session.add(comment)
+            db.session.commit()
+        else:
+            flash('post does not exist.', category='error')    
+    return redirect(url_for('main.home'))  
 
-# @main.route('/delete-comment/<comment_id>')
-# @login_required
-# def delete_comment(comment_id):
-#     comment = Comment.query.filter_by(id=comment_id).first()
+@main.route('/delete-comment/<comment_id>')
+@login_required
+def delete_comment(comment_id):
+    comment = Comment.query.filter_by(id=comment_id).first()
 
-#     if not comment:
-#         flash("Comment does not exist.", category='error')
-#     elif current_user.id != comment.author and current_user.id != comment.post.author:
-#         flash("You do not have permission to delete this comment,", category='error')
-#     else:
-#         db.session.delete(comment)
-#         db.session.commit()
-#     return redirect(url_for('main.home'))   
+    if not comment:
+        flash("Comment does not exist.", category='error')
+    elif current_user.id != comment.author and current_user.id != comment.post.author:
+        flash("You do not have permission to delete this comment,", category='error')
+    else:
+        db.session.delete(comment)
+        db.session.commit()
+    return redirect(url_for('main.home'))   
 
 # @main.route('/like-post/<post_id>', methods=['GET'])
 # @login_required
