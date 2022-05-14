@@ -1,5 +1,3 @@
-from operator import ge
-from turtle import pos
 from flask import render_template, request, redirect, url_for, abort,flash
 from ..requests import get_blogQuotes
 from . import main
