@@ -45,7 +45,7 @@ class Post(db.Model):
      text = db.Column(db.Text, nullable=False)
      author = db.Column(db.Integer, db.ForeignKey('users.id',ondelete='CASCADE'), nullable=False)
      comments = db.relationship('Comment', backref ='posts', passive_deletes=True)
-     likes = db.relationship('Like', backref ='post', passive_deletes=True)
+     likes = db.relationship('Like', backref ='posts', passive_deletes=True)
 
 class Comment(db.Model):
      __tablename__ = 'comments'
