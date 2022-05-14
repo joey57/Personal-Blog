@@ -13,7 +13,7 @@ class ProdConfig(Config):
   if uri and uri.startswith("postgres://"):
      uri = uri.replace("postgres://", "postgresql://", 1)
      SQLALCHEMY_DATABASE_URI=uri
-  pass
+  
   
  
 

@@ -41,7 +41,7 @@ class Post(db.Model):
 
      id = db.Column(db.Integer, primary_key=True)
      text = db.Column(db.Text, nullable=False)
-     author = db.Column(db.Integer, db.ForeignKey('users.id',ondelete='CASCADE'), nullable=False)
+     author = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
      comments = db.relationship('Comment', backref ='post', passive_deletes=True)
      likes = db.relationship('Like', backref ='posts', passive_deletes=True)
 
@@ -50,15 +50,15 @@ class Comment(db.Model):
 
      id = db.Column(db.Integer, primary_key=True)
      text = db.Column(db.String(200), nullable=False)
-     author = db.Column(db.Integer, db.ForeignKey('users.id',ondelete='CASCADE'), nullable=False)
-     post_id = db.Column(db.Integer, db.ForeignKey('posts.id',ondelete='CASCADE'), nullable=False)
+     author = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+     post_id = db.Column(db.Integer, db.ForeignKey('posts.id'), nullable=False)
 
 class Like(db.Model):
      __tablename__ = 'likes'
 
      id = db.Column(db.Integer, primary_key=True)
-     author = db.Column(db.Integer, db.ForeignKey('users.id',ondelete='CASCADE'), nullable=False)
-     post_id = db.Column(db.Integer, db.ForeignKey('posts.id',ondelete='CASCADE'), nullable=False)
+     author = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+     post_id = db.Column(db.Integer, db.ForeignKey('posts.id'), nullable=False)
 
 
             
