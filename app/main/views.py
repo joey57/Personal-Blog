@@ -53,7 +53,7 @@ def posts(username):
         flash('No user with that username exists.', category='error')
         return redirect(url_for('main.home'))
 
-    posts = Post.query.filter_by(author=user.id).all()
+    posts = user.posts
     return render_template('posts.html', user=current_user, posts=posts, username=username)
 
 
