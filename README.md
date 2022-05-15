@@ -8,9 +8,9 @@ Joyce Njoroge
 This is a blog application where users can post their thoughts add comments delete posts, like posts and view some random quotes in the landing page.
 
 ## Preview
-![preview!](/static/image/sc0.png)
-![preview!](static/image/sc1.png)
-![preview!](static/image/sc2.png)
+(/static/image/sc0.png)
+(static/image/sc1.png)
+(static/image/sc2.png)
 ## Running the Application
 * Install virtual environment using `$ python3.6 -m venv --without-pip virtual`
 * Activate virtual environment using `$ source virtual/bin/activate`
