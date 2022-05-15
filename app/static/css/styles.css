@@ -1,0 +1,7 @@
+.home {
+  background-image: url("static/images/bg1.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
