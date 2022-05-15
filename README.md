@@ -7,8 +7,6 @@ Joyce Njoroge
 ## Description 
 This is a blog application where users can post their thoughts add comments delete posts, like posts and view some random quotes in the landing page.
 
-## Preview
-<img src='/c/Users/jkinu/OneDrive/Documents/Moringa-school-projects/Personal-Blog/app/static/image/sc1.png'>
 ## Running the Application
 * Install virtual environment using `$ python3.6 -m venv --without-pip virtual`
 * Activate virtual environment using `$ source virtual/bin/activate`
