@@ -9,11 +9,11 @@ class Config:
 class ProdConfig(Config):
   '''
   '''
-  uri = os.getenv("DATABASE_URL")  
-  if uri and uri.startswith("postgres://"):
-     uri = uri.replace("postgres://", "postgresql://", 1)
-     SQLALCHEMY_DATABASE_URI=uri
-  # pass
+  # uri = os.getenv("DATABASE_URL")  
+  # if uri and uri.startswith("postgres://"):
+  #    uri = uri.replace("postgres://", "postgresql://", 1)
+  #    SQLALCHEMY_DATABASE_URI=uri
+  pass
   
   
   

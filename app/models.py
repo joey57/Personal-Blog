@@ -17,9 +17,9 @@ class User(UserMixin,db.Model):
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
     pass_secure = db.Column(db.String(255))
-    posts = db.relationship('Post', backref='user', passive_deletes=True, lazy='dynamic')
-    comments = db.relationship('Comment', backref ='user', passive_deletes=True, lazy='dynamic')
-    likes = db.relationship('Like', backref ='user', passive_deletes=True, lazy='dynamic')
+    posts = db.relationship('Post', backref='user', passive_deletes=True)
+    comments = db.relationship('Comment', backref ='user', passive_deletes=True)
+    likes = db.relationship('Like', backref ='user', passive_deletes=True)
     
     @property
     def password(self):
@@ -42,8 +42,8 @@ class Post(db.Model):
      id = db.Column(db.Integer, primary_key=True)
      text = db.Column(db.Text, nullable=False)
      author = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-     comments = db.relationship('Comment', backref ='post', passive_deletes=True, lazy='dynamic')
-     likes = db.relationship('Like', backref ='posts', passive_deletes=True, lazy='dynamic')
+     comments = db.relationship('Comment', backref ='post', passive_deletes=True)
+     likes = db.relationship('Like', backref ='posts', passive_deletes=True)
 
 
 class Comment(db.Model):
