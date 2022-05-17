@@ -7,6 +7,9 @@ Joyce Njoroge
 ## Description 
 This is a blog application where users can post their thoughts add comments delete posts, like posts and view some random quotes in the landing page.
 
+## Live page
+* live link (pblog3.herokuapp.com/)
+
 ## Running the Application
 * Install virtual environment using `$ python3.6 -m venv --without-pip virtual`
 * Activate virtual environment using `$ source virtual/bin/activate`
