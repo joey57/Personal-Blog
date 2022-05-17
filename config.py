@@ -13,12 +13,14 @@ class ProdConfig(Config):
   if uri and uri.startswith("postgres://"):
      uri = uri.replace("postgres://", "postgresql://", 1)
      SQLALCHEMY_DATABASE_URI=uri
+DEBUG=True      
+  
 
 class DevConfig(Config):
   '''
   '''
-  # SQLALCHEMY_DATABASE_URI ='postgresql+psycopg2://postgres:whalien52@localhost/blog'
-  DEBUG=True  
+  SQLALCHEMY_DATABASE_URI ='postgresql+psycopg2://postgres:whalien52@localhost/blog'
+DEBUG=True  
 
 config_options = {
   'development':DevConfig,
